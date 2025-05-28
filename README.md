@@ -53,12 +53,69 @@ Aplicativo Flutter para gerenciamento de usuários e fichas de treino de academi
 
 ---
 
-### Pré-requisitos
+## 📦 Como Executar o Projeto
 
-- Flutter SDK instalado
+### ⚙️ Pré-requisitos
+
+Certifique-se de que você tenha os seguintes softwares instalados na sua máquina:
+
+- [Flutter SDK](https://flutter.dev/docs/get-started/install)
+- [Node.js](https://nodejs.org/)
+- [PostgreSQL](https://www.postgresql.org/)
 - Android Studio ou VS Code
 - Emulador Android ou dispositivo físico
-- Node.js + PostgreSQL instalados para o backend
+
+---
+
+### 🚀 Passos para executar
+
+1. **Clone o repositório:**
+
+```bash
+git clone https://github.com/seu-usuario/gymtrack.git
+cd gymtrack
+```
+
+2. **Configure o banco de dados PostgreSQL:**
+
+- Crie um banco de dados no PostgreSQL.
+- Configure as credenciais e o nome do banco no arquivo `.env` (ou `config/config.json`) da API.
+
+3. **Instale as dependências do backend:**
+
+```bash
+cd api
+npm install
+```
+
+4. **(Opcional) Rode as migrações e seeds (se existirem):**
+
+```bash
+npx sequelize db:migrate
+npx sequelize db:seed:all
+```
+
+5. **Inicie o servidor backend:**
+
+```bash
+npm start
+```
+
+> O backend deverá estar disponível em `http://localhost:3000`
+
+6. **Instale as dependências do app Flutter:**
+
+```bash
+cd ../app
+flutter pub get
+flutter pub upgrade
+```
+
+7. **Conecte um emulador ou dispositivo Android e execute o app:**
+
+```bash
+flutter run
+```
 
 ---
 

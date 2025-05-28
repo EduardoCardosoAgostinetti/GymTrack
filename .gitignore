@@ -1,0 +1,49 @@
+# ----------------------------
+# Flutter - app/
+# ----------------------------
+app/build/
+app/.dart_tool/
+app/.packages
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.metadata
+app/pubspec.lock
+app/.idea/
+app/.vscode/
+app/.DS_Store
+app/Thumbs.db
+
+# ----------------------------
+# Node.js API - api/
+# ----------------------------
+api/node_modules/
+api/dist/
+api/build/
+
+# Logs
+api/npm-debug.log*
+api/yarn-debug.log*
+api/yarn-error.log*
+
+# Environment Variables
+api/.env
+
+# Editor/OS files
+api/.vscode/
+api/.idea/
+api/.DS_Store
+api/Thumbs.db
+
+# ----------------------------
+# Arquivos do sistema na raiz
+# ----------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Logs gerais
+# ----------------------------
+*.log
+*.tmp
+*.swp
+*.bak

@@ -15,7 +15,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   Future<void> sendRecoveryCode() async {
     final email = emailController.text.trim();
-    final localhostIP = "18.117.165.83";
+    final localhostIP = "192.168.5.150";
 
     if (email.isEmpty) {
       showErrorMessage("Por favor, digite seu email.");

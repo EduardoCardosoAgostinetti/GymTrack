@@ -12,7 +12,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final localhostIP = "18.117.165.83";
+  final localhostIP = "192.168.5.150";
   bool isLoading = false;
 
   String name = "";

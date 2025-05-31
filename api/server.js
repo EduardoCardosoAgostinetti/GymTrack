@@ -16,7 +16,7 @@ app.use('/auth', authRoutes);
 app.use('/workout', workoutRoutes);
 
 // Inicializa o banco de dados e o servidor
-sequelize.sync({ force: true })
+sequelize.sync({ alter: true })
   .then(() => {
     console.log('Banco de dados sincronizado');
     app.listen(3000, () => {

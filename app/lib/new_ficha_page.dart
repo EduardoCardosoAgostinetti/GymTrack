@@ -45,7 +45,7 @@ class _NewFichaPageState extends State<NewFichaPage> {
   }
 
   Future<void> _saveFicha() async {
-    final localhostIP = "192.168.5.150";
+    final localhostIP = "18.188.208.241";
     if (_formKey.currentState!.validate()) {
       List<Map<String, dynamic>> seriesData = [];
       for (var i = 0; i < seriesControllers.length; i++) {

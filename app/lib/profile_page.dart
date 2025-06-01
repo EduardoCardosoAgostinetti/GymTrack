@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   final int userId;
@@ -90,8 +91,9 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Cancelar')),
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancelar'),
+          ),
           ElevatedButton(
             onPressed: () => _updateField(field, controller.text.trim()),
             child: const Text('Salvar'),
@@ -116,6 +118,36 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _showError(String msg) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+  }
+
+  void _confirmLogout() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text("Tem certeza que quer sair?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Não"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context); // Fecha o dialog
+              _logout(); // Executa o logout
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            child: const Text("Sim"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('email');
+    await prefs.remove('password');
+    Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
   }
 
   Widget _buildCard({
@@ -148,7 +180,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Configurações")),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text("Configurações"),
+      ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : ListView(
@@ -171,6 +206,20 @@ class _ProfilePageState extends State<ProfilePage> {
                   title: "Senha",
                   subtitle: "••••••••",
                   field: "password",
+                ),
+                const SizedBox(height: 24),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: ElevatedButton.icon(
+                    icon: const Icon(Icons.logout),
+                    label: const Text("Sair"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      foregroundColor: Colors.white,
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: _confirmLogout,
+                  ),
                 ),
               ],
             ),
